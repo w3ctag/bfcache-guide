@@ -29,10 +29,10 @@ web developers do not need to choose between using the API and giving a more per
 Going forward, <b>all features should have BFCache support by default</b>,
 as documents are actually BFCached on navigation instead of getting destroyed for a sizable chunk of navigations.
 
-Note: It is possible for a document to not become fully active for other reasons
+Note: It is possible for a document to become non-[=Document/fully active=] for other reasons
 not related to BFcaching, such as when the iframe holding the document gets
 detached. Some advice below might not be relevant for those cases, since the
-document will never return to fully active again.
+document will never return to [=Document/fully active=] again.
 
 <h2 id="when-to-use">When should features care about BFCache?</h2>
 
