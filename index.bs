@@ -1,5 +1,5 @@
 <pre class="metadata">
-Title: Supporting BFCached Documents
+Title: Supporting Back/Forward Cached Documents
 Status: UD
 Shortname: bfcache-guide
 Repository: w3ctag/bfcache-guide
