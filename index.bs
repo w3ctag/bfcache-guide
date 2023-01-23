@@ -20,7 +20,7 @@ Browser implementations may have a back/forward cache, or "BFCache" for short.
 After a user navigates away from a document, the document might be cached in a non-[=Document/fully active=] state,
 and might be reused when the user navigates back.
 In the past, many APIs have missed specifying support for non-fully active documents,
-making them hard to support in various user agents to cache pages in the BFCache,
+making them hard to support in various user agents that cache pages in the BFCache,
 effectively making the user experience of navigating back and forth less optimal,
 or even introducing breakages or differences in behavior in various different implementations of BFCache.
 
