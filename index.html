@@ -521,6 +521,7 @@ dfn > a.self-link::before      { content: "#"; }
         <li><a href="#omit-non-fully-active"><span class="secno">2.1.3</span> <span class="content">Omit non-<span>fully active</span> documents from APIs that span multiple documents</span></a>
         <li><a href="#discard"><span class="secno">2.1.4</span> <span class="content">Discard non-<span>fully active</span> documents for situations that can’t be supported</span></a>
         <li><a href="#per-document-state"><span class="secno">2.1.5</span> <span class="content">Be aware that per-document state/data might persist after navigation</span></a>
+        <li><a href="#non-synchronous-steps"><span class="secno">2.1.6</span> <span class="content">Be aware that navigations can happen between steps running <span>in parallel</span></span></a>
        </ol>
       <li><a href="#antipatterns"><span class="secno">2.2</span> <span class="content">Antipatterns</span></a>
      </ol>
@@ -700,6 +701,19 @@ and doing cleanup as necessary (see the <a href="#listen-fully-active">§ 2.1.
   even after the user navigated away and back to it again.
   The <a href="https://github.com/whatwg/html/issues/6588#issuecomment-1157244943">discussion</a> around this concluded that this is OK after comparing with other behaviors (e.g. focus),
   but every feature specification should think about this and decide what works best for the feature. </div>
+   <h4 class="heading settled" data-level="2.1.6" id="non-synchronous-steps"><span class="secno">2.1.6. </span><span class="content">Be aware that navigations can happen between steps running <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a></span><a class="self-link" href="#non-synchronous-steps"></a></h4>
+    While running steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>,
+the document the steps are running on or are otherwise using might be navigated away and navigated to again.
+The steps themselves will not run while the document is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active④②">fully active</a>,
+but a considerable amount of time might have passed between the steps,
+and the user might not expect some states that are saved in the steps to be preserved. 
+   <p>When writing steps that run <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel②">in parallel</a>,
+consider also listening to changes to the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active④③">fully active</a> state
+and doing cleanup as necessary (see the <a href="#listen-fully-active">§ 2.1.2 Listen for changes to fully active status</a> pattern above).</p>
+   <div class="example" id="example-13d9fd30"><a class="self-link" href="#example-13d9fd30"></a> APIs that request permission to the user, or requests user interaction through prompt, etc.,
+  should consider re-requesting the user if it detects that the document had become non-fully active. </div>
+    Note: In theory, steps that run <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel③">in parallel</a> should generally already be resilient to changes that might occur between its steps.
+However, existing specs might not expect that navigations can occur and the document to be perceived as "gone" by the user in between the steps. 
    <h3 class="heading settled" data-level="2.2" id="antipatterns"><span class="secno">2.2. </span><span class="content">Antipatterns</span><a class="self-link" href="#antipatterns"></a></h3>
    <p>This is basically the reverse of what is mentioned in the design guidance.
 When writing specifications, <b>do not do these</b>:</p>
@@ -739,6 +753,8 @@ See these guides on how to handle this:</p>
        <p><a href="#listen-fully-active">§ 2.1.2 Listen for changes to fully active status</a></p>
       <li data-md>
        <p><a href="#per-document-state">§ 2.1.5 Be aware that per-document state/data might persist after navigation</a></p>
+      <li data-md>
+       <p><a href="#non-synchronous-steps">§ 2.1.6 Be aware that navigations can happen between steps running in parallel</a></p>
      </ul>
    </ul>
   </main>

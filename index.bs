@@ -226,6 +226,23 @@ and doing cleanup as necessary (see the [[#listen-fully-active]] pattern above).
   but every feature specification should think about this and decide what works best for the feature.
 </div>
 
+<h4 id="non-synchronous-steps">Be aware that navigations can happen between steps running [=in parallel=]</h4>
+While running steps [=in parallel=],
+the document the steps are running on or are otherwise using might be navigated away and navigated to again.
+The steps themselves will not run while the document is not [=fully active=],
+but a considerable amount of time might have passed between the steps,
+and the user might not expect some states that are saved in the steps to be preserved.
+
+When writing steps that run [=in parallel=],
+consider also listening to changes to the [=Document/fully active=] state
+and doing cleanup as necessary (see the [[#listen-fully-active]] pattern above).
+<div class=example>
+  APIs that request permission to the user, or requests user interaction through prompt, etc.,
+  should consider re-requesting the user if it detects that the document had become non-fully active.
+</div>
+Note: In theory, steps that run [=in parallel=] should generally already be resilient to changes that might occur between its steps.
+However, existing specs might not expect that navigations can occur and the document to be perceived as "gone" by the user in between the steps.
+
 <h3 id="antipatterns">Antipatterns</h3>
 
 This is basically the reverse of what is mentioned in the design guidance.
@@ -252,4 +269,5 @@ When writing specifications, <b>do not do these</b>:
     See these guides on how to handle this:
     *   [[#listen-fully-active]]
     *   [[#per-document-state]]
+    *   [[#non-synchronous-steps]]
 
