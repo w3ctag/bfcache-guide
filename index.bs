@@ -222,12 +222,11 @@ and doing cleanup as necessary (see the [[#listen-fully-active]] pattern above).
 </div>
 
 <h4 id="non-synchronous-steps">Be aware that navigations can happen between steps running [=in parallel=]</h4>
-While running steps [=in parallel=],
-the document the steps are running in or are otherwise using might be navigated away and (later) navigated to again.
-The steps themselves might not run while the document is not [=fully active=]
-(if they are in a queued task associate with the document),
-and a considerable amount of time might have passed between the steps,
-so the user might not expect some states that are saved in the steps to be preserved.
+If steps that run [=in parallel=] queue a task that is associated with a document,
+you need to be aware that the document might have been navigated away from and (later on) navigated to again.
+This can happen while running the steps [=in parallel=] and can have happened when the steps in the queued task eventually run.
+Since a navigation has happened and a considerable amount of time might have passed between the steps,
+the user might not expect some states that are saved in the steps to be preserved.
 
 When writing steps that run [=in parallel=],
 consider also listening to changes to the [=Document/fully active=] state
@@ -237,7 +236,7 @@ and doing cleanup as necessary or even refrain from running some steps
   APIs that request permission to the user, or requests user interaction through prompt, etc.,
   should consider re-requesting the user if it detects that the document had become non-fully active.
 </div>
-Note: In theory, steps that run [=in parallel=] should generally already be resilient to changes that might occur between its steps.
+Note: In theory, steps that run [=in parallel=] ought to be already resilient to changes that might occur between its steps.
 However, existing specs might not expect that navigations can occur and the document to be perceived as "gone" by the user in between the steps.
 
 <h3 id="antipatterns">Antipatterns</h3>
