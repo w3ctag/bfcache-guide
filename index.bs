@@ -228,6 +228,9 @@ This can happen while running the steps [=in parallel=] and can have happened wh
 Since a navigation has happened and a considerable amount of time might have passed between the steps,
 the user might not expect some states that are saved in the steps to be preserved.
 
+Note: In theory, steps that run [=in parallel=] ought to be already resilient to changes that might occur between its steps.
+However, existing specs might not expect that navigations can occur and the document to be perceived as "gone" by the user in between the steps.
+
 When writing steps that run [=in parallel=],
 consider also listening to changes to the [=Document/fully active=] state
 and doing cleanup as necessary or even refrain from running some steps
@@ -236,8 +239,6 @@ and doing cleanup as necessary or even refrain from running some steps
   APIs that request permission to the user, or requests user interaction through prompt, etc.,
   should consider re-requesting the user if it detects that the document had become non-fully active.
 </div>
-Note: In theory, steps that run [=in parallel=] ought to be already resilient to changes that might occur between its steps.
-However, existing specs might not expect that navigations can occur and the document to be perceived as "gone" by the user in between the steps.
 
 <h3 id="antipatterns">Antipatterns</h3>
 
