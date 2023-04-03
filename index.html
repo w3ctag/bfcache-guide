@@ -462,7 +462,7 @@ dfn > a.self-link::before      { content: "#"; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Supporting BFCached Documents</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2023-03-30">30 March 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2023-04-02">2 April 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -613,7 +613,7 @@ it can restore connections if appropriate.</p>
    <p>To listen to changes from <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active①⑧">fully active</a> to non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active①⑨">fully active</a>,
 add a step in <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-lifecycle.html#unloading-document-cleanup-steps" id="ref-for-unloading-document-cleanup-steps">unloading document cleanup steps</a>.
 Meanwhile, to listen to changes from non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⓪">fully active</a> to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②①">fully active</a>,
-add a step in <a data-link-type="dfn">reactivate a document</a>.</p>
+add a step to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#reactivate-a-document" id="ref-for-reactivate-a-document">reactivate</a> a document.</p>
    <p>While web authors can manually do cleanup (e.g. release the resources, sever connections)
 from within the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/indices.html#event-pagehide" id="ref-for-event-pagehide">pagehide</a></code> event and restore them from the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/indices.html#event-pageshow" id="ref-for-event-pageshow">pageshow</a></code> event themselves,
 doing this automatically from the API design allows the document to be kept alive after navigation by default,
@@ -833,6 +833,12 @@ See these guides on how to handle this:</p>
     <li><a href="#ref-for-event-pageshow">2.1.2. Listen for changes to fully active status</a>
    </ul>
   </aside>
+  <aside aria-labelledby="infopaneltitle-for-845bffcb8707bbb2a1459536eecf13cc" class="dfn-panel" data-for="845bffcb8707bbb2a1459536eecf13cc" id="infopanel-for-845bffcb8707bbb2a1459536eecf13cc">
+   <span id="infopaneltitle-for-845bffcb8707bbb2a1459536eecf13cc" style="display:none">Info about the 'reactivate' external reference.</span><a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#reactivate-a-document">https://html.spec.whatwg.org/multipage/browsing-the-web.html#reactivate-a-document</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-reactivate-a-document">2.1.2. Listen for changes to fully active status</a>
+   </ul>
+  </aside>
   <aside aria-labelledby="infopaneltitle-for-83418513ea93980e95697432d0d33474" class="dfn-panel" data-for="83418513ea93980e95697432d0d33474" id="infopanel-for-83418513ea93980e95697432d0d33474">
    <span id="infopaneltitle-for-83418513ea93980e95697432d0d33474" style="display:none">Info about the 'sticky activation' external reference.</span><a href="https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation">https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation</a><b>Referenced in:</b>
    <ul>
@@ -883,6 +889,7 @@ See these guides on how to handle this:</p>
      <li><span class="dfn-paneled" id="9d8ff05d06644943ae33e1c8cddde31d">opener</span>
      <li><span class="dfn-paneled" id="ff9f6ed4f290e15aa3c0172b660aeeac">pagehide</span>
      <li><span class="dfn-paneled" id="54f0bfa77c123404411d9b8b462c6b35">pageshow</span>
+     <li><span class="dfn-paneled" id="845bffcb8707bbb2a1459536eecf13cc">reactivate</span>
      <li><span class="dfn-paneled" id="83418513ea93980e95697432d0d33474">sticky activation</span>
      <li><span class="dfn-paneled" id="877bb12103715513886b6cf42f954d68">system focus</span>
      <li><span class="dfn-paneled" id="5002247a1e0aa38a7705419d947c6884">unloading document cleanup steps</span>
