@@ -6,10 +6,9 @@
   <meta content="UD" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-UD" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version d6f2d6445, updated Tue Jan 17 11:25:25 2023 -0800" name="generator">
+  <meta content="Bikeshed version d9bd89757, updated Thu Mar 23 10:06:53 2023 -0700" name="generator">
   <link href="https://w3ctag.github.io/bfcache-guide/" rel="canonical">
 <style>/* style-autolinks */
-
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -69,7 +68,8 @@ pre .property::before, pre .property::after {
 
 [data-link-type=biblio] {
     white-space: pre;
-}</style>
+}
+</style>
 <style>/* style-colors */
 
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
@@ -178,9 +178,9 @@ pre .property::before, pre .property::after {
     --outdated-shadow: red;
 
     --editedrec-bg: darkorange;
-}</style>
+}
+</style>
 <style>/* style-counters */
-
 body {
     counter-reset: example figure issue;
 }
@@ -207,9 +207,9 @@ figcaption {
 }
 figcaption:not(.no-marker)::before {
     content: "Figure " counter(figure) " ";
-}</style>
+}
+</style>
 <style>/* style-dfn-panel */
-
 :root {
     --dfnpanel-bg: #ddd;
     --dfnpanel-text: var(--text);
@@ -217,10 +217,10 @@ figcaption:not(.no-marker)::before {
 .dfn-panel {
     position: absolute;
     z-index: 35;
-    height: auto;
-    width: -webkit-fit-content;
-    width: fit-content;
+    width: 20em;
+    min-width: min-content;
     max-width: 300px;
+    height: auto;
     max-height: 500px;
     overflow: auto;
     padding: 0.5em 0.75em;
@@ -228,6 +228,7 @@ figcaption:not(.no-marker)::before {
     background: var(--dfnpanel-bg);
     color: var(--dfnpanel-text);
     border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
 }
 .dfn-panel:not(.on) { display: none; }
 .dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
@@ -250,7 +251,6 @@ figcaption:not(.no-marker)::before {
 .dfn-paneled { cursor: pointer; }
 </style>
 <style>/* style-issues */
-
 a[href].issue-return {
     float: right;
     float: inline-end;
@@ -260,7 +260,6 @@ a[href].issue-return {
 }
 </style>
 <style>/* style-md-lists */
-
 /* This is a weird hack for me not yet following the commonmark spec
    regarding paragraph and lists. */
 [data-md] > :first-child {
@@ -268,7 +267,8 @@ a[href].issue-return {
 }
 [data-md] > :last-child {
     margin-bottom: 0;
-}</style>
+}
+</style>
 <style>/* style-selflinks */
 
 :root {
@@ -442,6 +442,7 @@ dfn > a.self-link::before      { content: "#"; }
        which is quite common in practice... */
     img { background: white; }
 }
+
 @media (prefers-color-scheme: dark) {
     :root {
         --selflink-text: black;
@@ -455,12 +456,13 @@ dfn > a.self-link::before      { content: "#"; }
         --dfnpanel-bg: #222;
         --dfnpanel-text: var(--text);
     }
-}</style>
+}
+</style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Supporting BFCached Documents</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2023-01-23">23 January 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2023-04-02">2 April 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -608,6 +610,10 @@ and must ensure that no new requests are issued
 and that connections that allow for new incoming requests are terminated.
 When a document goes from non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active①⑥">fully active</a> to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active①⑦">fully active</a> again,
 it can restore connections if appropriate.</p>
+   <p>To listen to changes from <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active①⑧">fully active</a> to non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active①⑨">fully active</a>,
+add a step in <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-lifecycle.html#unloading-document-cleanup-steps" id="ref-for-unloading-document-cleanup-steps">unloading document cleanup steps</a>.
+Meanwhile, to listen to changes from non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⓪">fully active</a> to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②①">fully active</a>,
+add a step to <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#reactivate-a-document" id="ref-for-reactivate-a-document">reactivate</a> a document.</p>
    <p>While web authors can manually do cleanup (e.g. release the resources, sever connections)
 from within the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/indices.html#event-pagehide" id="ref-for-event-pagehide">pagehide</a></code> event and restore them from the <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/indices.html#event-pageshow" id="ref-for-event-pageshow">pageshow</a></code> event themselves,
 doing this automatically from the API design allows the document to be kept alive after navigation by default,
@@ -618,58 +624,58 @@ and is more likely to lead to well-functioning web applications.</p>
   resource loads). </div>
    <div class="example" id="example-1dfbe459"><a class="self-link" href="#example-1dfbe459"></a> APIs that hold non-exclusive resources
   may be able to release the resource when the document becomes not fully active,
-  and re-acquire them when it becomes <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active①⑧">fully active</a> again
+  and re-acquire them when it becomes <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②②">fully active</a> again
   (Screen Wake Lock API is already <a href="https://w3c.github.io/screen-wake-lock/#handling-document-loss-of-full-activity">doing</a> the first part). </div>
    <p class="note" role="note"><span class="marker">Note:</span> this might not be appropriate for all types of resources,
 e.g. if an exclusive lock is held,
-we cannot just release it and reacquire when <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active①⑨">fully active</a> since another page could then take that lock.
+we cannot just release it and reacquire when <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②③">fully active</a> since another page could then take that lock.
 If there is an API to signal to the page that this has happened,
 it may be acceptable but beware that if the only time this happens is with BFCache,
 then it’s likely many pages are not prepared for it. If it is not possible to support BFCache,
 follow the <a href="#discard">§ 2.1.4 Discard non-fully active documents for situations that can’t be supported</a> pattern described below.</p>
-   <p>Additionally, when a document becomes <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⓪">fully active</a> again,
+   <p>Additionally, when a document becomes <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②④">fully active</a> again,
 it can be useful to update it with the current state of the world,
-if anything has changed while it is in the non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②①">fully active</a> state.
+if anything has changed while it is in the non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⑤">fully active</a> state.
 However, care needs to be taken with events that occurred while in the BFCache.
-When not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②②">fully active</a>, for some cases, all events should be dropped,
+When not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⑥">fully active</a>, for some cases, all events should be dropped,
 in some the latest state should be delivered in a single event,
 in others it may be appropriate to queue events or deliver a combined event.
 The correct approach is case by case and should consider privacy,
 correctness, performance and ergonomics.</p>
-   <p class="note" role="note"><span class="marker">Note:</span> Making sure the latest state is sent to a document that becomes <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②③">fully active</a> again is especially important when retrofitting existing APIs.
+   <p class="note" role="note"><span class="marker">Note:</span> Making sure the latest state is sent to a document that becomes <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⑦">fully active</a> again is especially important when retrofitting existing APIs.
 This is because current users of these APIs expect to always have the latest information.
 Dropping state updates can leave the document with stale information,
 which can lead to unexpected and hard-to-detect breakage of existing sites.</p>
    <div class="example" id="example-32a4ab83"><a class="self-link" href="#example-32a4ab83"></a> The <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/gamepad/#dfn-gamepadconnected" id="ref-for-dfn-gamepadconnected">gamepadconnected</a></code> event
-  can be sent to a document that becomes <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②④">fully active</a> again
-  if a gamepad is connected while the document is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⑤">fully active</a>.
+  can be sent to a document that becomes <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⑧">fully active</a> again
+  if a gamepad is connected while the document is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⑨">fully active</a>.
   If the gamepad was repeatedly connected and disconnected,
   only the final connected event should be delivered.
   (This is not specified yet, see <a href="https://github.com/w3c/gamepad/issues/149">issue</a>) </div>
    <div class="example" id="example-46b7099c"><a class="self-link" href="#example-46b7099c"></a> For geolocation or other physical sensors,
-  no information about what happened while not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⑥">fully active</a> should be delivered.
-  The events should simply resume from when the document became <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⑦">fully active</a>.
-  However, these APIs should check the state when the document becomes <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⑧">fully active</a> again,
+  no information about what happened while not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③⓪">fully active</a> should be delivered.
+  The events should simply resume from when the document became <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③①">fully active</a>.
+  However, these APIs should check the state when the document becomes <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③②">fully active</a> again,
   to determine if a status update should be sent (e.g. is the current location far away from the
   location when the document becomes not fully active?), to ensure the document has the latest
   information, as guaranteed by the API normally. </div>
    <div class="example" id="example-3f8cc6e6"><a class="self-link" href="#example-3f8cc6e6"></a> For network connections or streams,
-  the data received while not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active②⑨">fully active</a> should be delivered only
-  when the document becomes <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③⓪">fully active</a> again,
+  the data received while not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③③">fully active</a> should be delivered only
+  when the document becomes <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③④">fully active</a> again,
   but whereas a stream might have created many events with a small amount of data each,
   it could be delivered as smaller number of events with more data in each. </div>
-   <h4 class="heading settled" data-level="2.1.3" id="omit-non-fully-active"><span class="secno">2.1.3. </span><span class="content">Omit non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③①">fully active</a> documents from APIs that span multiple documents</span><a class="self-link" href="#omit-non-fully-active"></a></h4>
-    Non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③②">fully active</a> documents should not be observable,
+   <h4 class="heading settled" data-level="2.1.3" id="omit-non-fully-active"><span class="secno">2.1.3. </span><span class="content">Omit non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③⑤">fully active</a> documents from APIs that span multiple documents</span><a class="self-link" href="#omit-non-fully-active"></a></h4>
+    Non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③⑥">fully active</a> documents should not be observable,
 so APIs should treat them as if they no longer exist.
 They should not be visible to the "outside world" through document-spanning APIs
 (e.g. <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/ServiceWorker/#dom-clients-matchall" id="ref-for-dom-clients-matchall">clients.matchAll()</a></code>, <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-opener" id="ref-for-dom-opener">window.opener</a></code>). 
    <p class="note" role="note"><span class="marker">Note:</span> This should be rare since cross-document-spanning APIs are themselves relatively rare.</p>
-   <div class="example" id="example-20998cac"><a class="self-link" href="#example-20998cac"></a> <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/web-messaging.html#broadcastchannel" id="ref-for-broadcastchannel">BroadcastChannel</a></code> <a href="https://html.spec.whatwg.org/multipage/web-messaging.html#broadcasting-to-other-browsing-contexts:fully-active">checks</a> for <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③③">fully active</a> before sending messages to other browsing contexts. </div>
-   <div class="example" id="example-1a865af0"><a class="self-link" href="#example-1a865af0"></a> <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/ServiceWorker/#dom-clients-matchall" id="ref-for-dom-clients-matchall①">clients.matchAll()</a></code> currently does not distinguish between <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③④">fully active</a> and non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③⑤">fully active</a> clients,
-  but correct implementations should only return <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③⑥">fully active</a> clients.
+   <div class="example" id="example-20998cac"><a class="self-link" href="#example-20998cac"></a> <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/web-messaging.html#broadcastchannel" id="ref-for-broadcastchannel">BroadcastChannel</a></code> <a href="https://html.spec.whatwg.org/multipage/web-messaging.html#broadcasting-to-other-browsing-contexts:fully-active">checks</a> for <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③⑦">fully active</a> before sending messages to other browsing contexts. </div>
+   <div class="example" id="example-1a865af0"><a class="self-link" href="#example-1a865af0"></a> <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/ServiceWorker/#dom-clients-matchall" id="ref-for-dom-clients-matchall①">clients.matchAll()</a></code> currently does not distinguish between <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③⑧">fully active</a> and non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③⑨">fully active</a> clients,
+  but correct implementations should only return <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active④⓪">fully active</a> clients.
   (See <a href="https://github.com/w3c/ServiceWorker/issues/1594">issue</a>) </div>
-   <h4 class="heading settled" data-level="2.1.4" id="discard"><span class="secno">2.1.4. </span><span class="content">Discard non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③⑦">fully active</a> documents for situations that can’t be supported</span><a class="self-link" href="#discard"></a></h4>
-    If supporting non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③⑧">fully active</a> documents is not possible for certain cases,
+   <h4 class="heading settled" data-level="2.1.4" id="discard"><span class="secno">2.1.4. </span><span class="content">Discard non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active④①">fully active</a> documents for situations that can’t be supported</span><a class="self-link" href="#discard"></a></h4>
+    If supporting non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active④②">fully active</a> documents is not possible for certain cases,
 explicitly specify it by <a data-link-type="dfn">discarding the document|</a> if the situation happens after the user navigated away,
 or setting the document’s <a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#concept-document-salvageable">salvageable</a>)
 bit to false if the situation happens before or during the navigation away from the document,
@@ -677,15 +683,15 @@ to cause it to be automatically discarded after navigation.
    <p class="note" role="note"><span class="marker">Note:</span> this should be rare and probably should only be used when retrofitting old APIs,
 as new APIs should always strive to work well with BFCache.</p>
    <div class="example" id="example-94d4ddf4"><a class="self-link" href="#example-94d4ddf4"></a> WebSockets <a href="https://html.spec.whatwg.org/#unloading-documents:concept-document-salvageable-7">sets the salvageable bit to false</a> during unload. </div>
-   <div class="example" id="example-47c778e3"><a class="self-link" href="#example-47c778e3"></a> Calling <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/ServiceWorker/#dom-clients-claim" id="ref-for-dom-clients-claim">clients.claim()</a></code> should not wait for non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active③⑨">fully active</a> clients,
-  instead it should cause the non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active④⓪">fully active</a> client documents to be discarded.
+   <div class="example" id="example-47c778e3"><a class="self-link" href="#example-47c778e3"></a> Calling <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/ServiceWorker/#dom-clients-claim" id="ref-for-dom-clients-claim">clients.claim()</a></code> should not wait for non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active④③">fully active</a> clients,
+  instead it should cause the non-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active④④">fully active</a> client documents to be discarded.
   (This is currently not specified, see <a href="https://github.com/w3c/ServiceWorker/issues/1594">issue</a>) </div>
    <h4 class="heading settled" data-level="2.1.5" id="per-document-state"><span class="secno">2.1.5. </span><span class="content">Be aware that per-document state/data might persist after navigation</span><a class="self-link" href="#per-document-state"></a></h4>
     As a document might be reused even after navigation,
 be aware that tying something to a document’s lifetime
 also means reusing it after navigations.
 If this is not desirable,
-consider listening to changes to the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active④①">fully active</a> state
+consider listening to changes to the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active④⑤">fully active</a> state
 and doing cleanup as necessary (see the <a href="#listen-fully-active">§ 2.1.2 Listen for changes to fully active status</a> pattern above). 
    <div class="example" id="example-957129a3"><a class="self-link" href="#example-957129a3"></a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation" id="ref-for-sticky-activation">Sticky activation</a> is determined by the "last activation timestamp",
   which is tied to a document.
@@ -779,74 +785,86 @@ See these guides on how to handle this:</p>
   </div>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
-  <aside class="dfn-panel" data-for="term-for-dfn-gamepadconnected">
-   <a href="https://w3c.github.io/gamepad/#dfn-gamepadconnected">https://w3c.github.io/gamepad/#dfn-gamepadconnected</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-6d0578ffdf5f512c436348fdc7085334" class="dfn-panel" data-for="6d0578ffdf5f512c436348fdc7085334" id="infopanel-for-6d0578ffdf5f512c436348fdc7085334">
+   <span id="infopaneltitle-for-6d0578ffdf5f512c436348fdc7085334" style="display:none">Info about the 'gamepadconnected' external reference.</span><a href="https://w3c.github.io/gamepad/#dfn-gamepadconnected">https://w3c.github.io/gamepad/#dfn-gamepadconnected</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dfn-gamepadconnected">2.1.2. Listen for changes to fully active status</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-geolocation-watchposition">
-   <a href="https://w3c.github.io/geolocation-api/#dom-geolocation-watchposition">https://w3c.github.io/geolocation-api/#dom-geolocation-watchposition</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-5f721c0a6f3beaadea199c80f8358c22" class="dfn-panel" data-for="5f721c0a6f3beaadea199c80f8358c22" id="infopanel-for-5f721c0a6f3beaadea199c80f8358c22">
+   <span id="infopaneltitle-for-5f721c0a6f3beaadea199c80f8358c22" style="display:none">Info about the 'watchPosition()' external reference.</span><a href="https://w3c.github.io/geolocation-api/#dom-geolocation-watchposition">https://w3c.github.io/geolocation-api/#dom-geolocation-watchposition</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-geolocation-watchposition">2.1.1. Gate actions with fully active checks</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-broadcastchannel">
-   <a href="https://html.spec.whatwg.org/multipage/web-messaging.html#broadcastchannel">https://html.spec.whatwg.org/multipage/web-messaging.html#broadcastchannel</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-9110f806bb5fdbbb16bc9c04252670d5" class="dfn-panel" data-for="9110f806bb5fdbbb16bc9c04252670d5" id="infopanel-for-9110f806bb5fdbbb16bc9c04252670d5">
+   <span id="infopaneltitle-for-9110f806bb5fdbbb16bc9c04252670d5" style="display:none">Info about the 'BroadcastChannel' external reference.</span><a href="https://html.spec.whatwg.org/multipage/web-messaging.html#broadcastchannel">https://html.spec.whatwg.org/multipage/web-messaging.html#broadcastchannel</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-broadcastchannel">2.1.3. Omit non-fully active documents from APIs that span multiple documents</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-fully-active">
-   <a href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active">https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-7594a09aa0c77c9e24726559a3a6da9d" class="dfn-panel" data-for="7594a09aa0c77c9e24726559a3a6da9d" id="infopanel-for-7594a09aa0c77c9e24726559a3a6da9d">
+   <span id="infopaneltitle-for-7594a09aa0c77c9e24726559a3a6da9d" style="display:none">Info about the 'fully active' external reference.</span><a href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active">https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-fully-active">1. Introduction</a> <a href="#ref-for-fully-active①">(2)</a> <a href="#ref-for-fully-active②">(3)</a>
     <li><a href="#ref-for-fully-active③">2. When should features care about BFCache?</a> <a href="#ref-for-fully-active④">(2)</a>
     <li><a href="#ref-for-fully-active⑤">2.1.1. Gate actions with fully active checks</a> <a href="#ref-for-fully-active⑥">(2)</a> <a href="#ref-for-fully-active⑦">(3)</a> <a href="#ref-for-fully-active⑧">(4)</a> <a href="#ref-for-fully-active⑨">(5)</a> <a href="#ref-for-fully-active①⓪">(6)</a> <a href="#ref-for-fully-active①①">(7)</a> <a href="#ref-for-fully-active①②">(8)</a>
-    <li><a href="#ref-for-fully-active①③">2.1.2. Listen for changes to fully active status</a> <a href="#ref-for-fully-active①④">(2)</a> <a href="#ref-for-fully-active①⑤">(3)</a> <a href="#ref-for-fully-active①⑥">(4)</a> <a href="#ref-for-fully-active①⑦">(5)</a> <a href="#ref-for-fully-active①⑧">(6)</a> <a href="#ref-for-fully-active①⑨">(7)</a> <a href="#ref-for-fully-active②⓪">(8)</a> <a href="#ref-for-fully-active②①">(9)</a> <a href="#ref-for-fully-active②②">(10)</a> <a href="#ref-for-fully-active②③">(11)</a> <a href="#ref-for-fully-active②④">(12)</a> <a href="#ref-for-fully-active②⑤">(13)</a> <a href="#ref-for-fully-active②⑥">(14)</a> <a href="#ref-for-fully-active②⑦">(15)</a> <a href="#ref-for-fully-active②⑧">(16)</a> <a href="#ref-for-fully-active②⑨">(17)</a> <a href="#ref-for-fully-active③⓪">(18)</a>
-    <li><a href="#ref-for-fully-active③①">2.1.3. Omit non-fully active documents from APIs that span multiple documents</a> <a href="#ref-for-fully-active③②">(2)</a> <a href="#ref-for-fully-active③③">(3)</a> <a href="#ref-for-fully-active③④">(4)</a> <a href="#ref-for-fully-active③⑤">(5)</a> <a href="#ref-for-fully-active③⑥">(6)</a>
-    <li><a href="#ref-for-fully-active③⑦">2.1.4. Discard non-fully active documents for situations that can’t be supported</a> <a href="#ref-for-fully-active③⑧">(2)</a> <a href="#ref-for-fully-active③⑨">(3)</a> <a href="#ref-for-fully-active④⓪">(4)</a>
-    <li><a href="#ref-for-fully-active④①">2.1.5. Be aware that per-document state/data might persist after navigation</a>
+    <li><a href="#ref-for-fully-active①③">2.1.2. Listen for changes to fully active status</a> <a href="#ref-for-fully-active①④">(2)</a> <a href="#ref-for-fully-active①⑤">(3)</a> <a href="#ref-for-fully-active①⑥">(4)</a> <a href="#ref-for-fully-active①⑦">(5)</a> <a href="#ref-for-fully-active①⑧">(6)</a> <a href="#ref-for-fully-active①⑨">(7)</a> <a href="#ref-for-fully-active②⓪">(8)</a> <a href="#ref-for-fully-active②①">(9)</a> <a href="#ref-for-fully-active②②">(10)</a> <a href="#ref-for-fully-active②③">(11)</a> <a href="#ref-for-fully-active②④">(12)</a> <a href="#ref-for-fully-active②⑤">(13)</a> <a href="#ref-for-fully-active②⑥">(14)</a> <a href="#ref-for-fully-active②⑦">(15)</a> <a href="#ref-for-fully-active②⑧">(16)</a> <a href="#ref-for-fully-active②⑨">(17)</a> <a href="#ref-for-fully-active③⓪">(18)</a> <a href="#ref-for-fully-active③①">(19)</a> <a href="#ref-for-fully-active③②">(20)</a> <a href="#ref-for-fully-active③③">(21)</a> <a href="#ref-for-fully-active③④">(22)</a>
+    <li><a href="#ref-for-fully-active③⑤">2.1.3. Omit non-fully active documents from APIs that span multiple documents</a> <a href="#ref-for-fully-active③⑥">(2)</a> <a href="#ref-for-fully-active③⑦">(3)</a> <a href="#ref-for-fully-active③⑧">(4)</a> <a href="#ref-for-fully-active③⑨">(5)</a> <a href="#ref-for-fully-active④⓪">(6)</a>
+    <li><a href="#ref-for-fully-active④①">2.1.4. Discard non-fully active documents for situations that can’t be supported</a> <a href="#ref-for-fully-active④②">(2)</a> <a href="#ref-for-fully-active④③">(3)</a> <a href="#ref-for-fully-active④④">(4)</a>
+    <li><a href="#ref-for-fully-active④⑤">2.1.5. Be aware that per-document state/data might persist after navigation</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-opener">
-   <a href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-opener">https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-opener</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-9d8ff05d06644943ae33e1c8cddde31d" class="dfn-panel" data-for="9d8ff05d06644943ae33e1c8cddde31d" id="infopanel-for-9d8ff05d06644943ae33e1c8cddde31d">
+   <span id="infopaneltitle-for-9d8ff05d06644943ae33e1c8cddde31d" style="display:none">Info about the 'opener' external reference.</span><a href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-opener">https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-opener</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-opener">2.1.3. Omit non-fully active documents from APIs that span multiple documents</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-event-pagehide">
-   <a href="https://html.spec.whatwg.org/multipage/indices.html#event-pagehide">https://html.spec.whatwg.org/multipage/indices.html#event-pagehide</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-ff9f6ed4f290e15aa3c0172b660aeeac" class="dfn-panel" data-for="ff9f6ed4f290e15aa3c0172b660aeeac" id="infopanel-for-ff9f6ed4f290e15aa3c0172b660aeeac">
+   <span id="infopaneltitle-for-ff9f6ed4f290e15aa3c0172b660aeeac" style="display:none">Info about the 'pagehide' external reference.</span><a href="https://html.spec.whatwg.org/multipage/indices.html#event-pagehide">https://html.spec.whatwg.org/multipage/indices.html#event-pagehide</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-event-pagehide">2.1.2. Listen for changes to fully active status</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-event-pageshow">
-   <a href="https://html.spec.whatwg.org/multipage/indices.html#event-pageshow">https://html.spec.whatwg.org/multipage/indices.html#event-pageshow</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-54f0bfa77c123404411d9b8b462c6b35" class="dfn-panel" data-for="54f0bfa77c123404411d9b8b462c6b35" id="infopanel-for-54f0bfa77c123404411d9b8b462c6b35">
+   <span id="infopaneltitle-for-54f0bfa77c123404411d9b8b462c6b35" style="display:none">Info about the 'pageshow' external reference.</span><a href="https://html.spec.whatwg.org/multipage/indices.html#event-pageshow">https://html.spec.whatwg.org/multipage/indices.html#event-pageshow</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-event-pageshow">2.1.2. Listen for changes to fully active status</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-sticky-activation">
-   <a href="https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation">https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-845bffcb8707bbb2a1459536eecf13cc" class="dfn-panel" data-for="845bffcb8707bbb2a1459536eecf13cc" id="infopanel-for-845bffcb8707bbb2a1459536eecf13cc">
+   <span id="infopaneltitle-for-845bffcb8707bbb2a1459536eecf13cc" style="display:none">Info about the 'reactivate' external reference.</span><a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#reactivate-a-document">https://html.spec.whatwg.org/multipage/browsing-the-web.html#reactivate-a-document</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-reactivate-a-document">2.1.2. Listen for changes to fully active status</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-83418513ea93980e95697432d0d33474" class="dfn-panel" data-for="83418513ea93980e95697432d0d33474" id="infopanel-for-83418513ea93980e95697432d0d33474">
+   <span id="infopaneltitle-for-83418513ea93980e95697432d0d33474" style="display:none">Info about the 'sticky activation' external reference.</span><a href="https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation">https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-sticky-activation">2.1.5. Be aware that per-document state/data might persist after navigation</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-system-focus">
-   <a href="https://html.spec.whatwg.org/multipage/interaction.html#system-focus">https://html.spec.whatwg.org/multipage/interaction.html#system-focus</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-877bb12103715513886b6cf42f954d68" class="dfn-panel" data-for="877bb12103715513886b6cf42f954d68" id="infopanel-for-877bb12103715513886b6cf42f954d68">
+   <span id="infopaneltitle-for-877bb12103715513886b6cf42f954d68" style="display:none">Info about the 'system focus' external reference.</span><a href="https://html.spec.whatwg.org/multipage/interaction.html#system-focus">https://html.spec.whatwg.org/multipage/interaction.html#system-focus</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-system-focus">2.1.1. Gate actions with fully active checks</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-clients-claim">
-   <a href="https://w3c.github.io/ServiceWorker/#dom-clients-claim">https://w3c.github.io/ServiceWorker/#dom-clients-claim</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-5002247a1e0aa38a7705419d947c6884" class="dfn-panel" data-for="5002247a1e0aa38a7705419d947c6884" id="infopanel-for-5002247a1e0aa38a7705419d947c6884">
+   <span id="infopaneltitle-for-5002247a1e0aa38a7705419d947c6884" style="display:none">Info about the 'unloading document cleanup steps' external reference.</span><a href="https://html.spec.whatwg.org/multipage/document-lifecycle.html#unloading-document-cleanup-steps">https://html.spec.whatwg.org/multipage/document-lifecycle.html#unloading-document-cleanup-steps</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-unloading-document-cleanup-steps">2.1.2. Listen for changes to fully active status</a>
+   </ul>
+  </aside>
+  <aside aria-labelledby="infopaneltitle-for-7808c50882de287be786a89ce9b734f8" class="dfn-panel" data-for="7808c50882de287be786a89ce9b734f8" id="infopanel-for-7808c50882de287be786a89ce9b734f8">
+   <span id="infopaneltitle-for-7808c50882de287be786a89ce9b734f8" style="display:none">Info about the 'claim()' external reference.</span><a href="https://w3c.github.io/ServiceWorker/#dom-clients-claim">https://w3c.github.io/ServiceWorker/#dom-clients-claim</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-clients-claim">2.1.4. Discard non-fully active documents for situations that can’t be supported</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-dom-clients-matchall">
-   <a href="https://w3c.github.io/ServiceWorker/#dom-clients-matchall">https://w3c.github.io/ServiceWorker/#dom-clients-matchall</a><b>Referenced in:</b>
+  <aside aria-labelledby="infopaneltitle-for-61e5a5724014b37dec6c6bfee7ccaf27" class="dfn-panel" data-for="61e5a5724014b37dec6c6bfee7ccaf27" id="infopanel-for-61e5a5724014b37dec6c6bfee7ccaf27">
+   <span id="infopaneltitle-for-61e5a5724014b37dec6c6bfee7ccaf27" style="display:none">Info about the 'matchAll()' external reference.</span><a href="https://w3c.github.io/ServiceWorker/#dom-clients-matchall">https://w3c.github.io/ServiceWorker/#dom-clients-matchall</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-clients-matchall">2.1.3. Omit non-fully active documents from APIs that span multiple documents</a> <a href="#ref-for-dom-clients-matchall①">(2)</a>
    </ul>
@@ -856,29 +874,31 @@ See these guides on how to handle this:</p>
    <li>
     <a data-link-type="biblio">[GAMEPAD]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-dfn-gamepadconnected">gamepadconnected</span>
+     <li><span class="dfn-paneled" id="6d0578ffdf5f512c436348fdc7085334">gamepadconnected</span>
     </ul>
    <li>
     <a data-link-type="biblio">[GEOLOCATION]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-dom-geolocation-watchposition">watchPosition()</span>
+     <li><span class="dfn-paneled" id="5f721c0a6f3beaadea199c80f8358c22">watchPosition()</span>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-broadcastchannel">BroadcastChannel</span>
-     <li><span class="dfn-paneled" id="term-for-fully-active">fully active</span>
-     <li><span class="dfn-paneled" id="term-for-dom-opener">opener</span>
-     <li><span class="dfn-paneled" id="term-for-event-pagehide">pagehide</span>
-     <li><span class="dfn-paneled" id="term-for-event-pageshow">pageshow</span>
-     <li><span class="dfn-paneled" id="term-for-sticky-activation">sticky activation</span>
-     <li><span class="dfn-paneled" id="term-for-system-focus">system focus</span>
+     <li><span class="dfn-paneled" id="9110f806bb5fdbbb16bc9c04252670d5">BroadcastChannel</span>
+     <li><span class="dfn-paneled" id="7594a09aa0c77c9e24726559a3a6da9d">fully active</span>
+     <li><span class="dfn-paneled" id="9d8ff05d06644943ae33e1c8cddde31d">opener</span>
+     <li><span class="dfn-paneled" id="ff9f6ed4f290e15aa3c0172b660aeeac">pagehide</span>
+     <li><span class="dfn-paneled" id="54f0bfa77c123404411d9b8b462c6b35">pageshow</span>
+     <li><span class="dfn-paneled" id="845bffcb8707bbb2a1459536eecf13cc">reactivate</span>
+     <li><span class="dfn-paneled" id="83418513ea93980e95697432d0d33474">sticky activation</span>
+     <li><span class="dfn-paneled" id="877bb12103715513886b6cf42f954d68">system focus</span>
+     <li><span class="dfn-paneled" id="5002247a1e0aa38a7705419d947c6884">unloading document cleanup steps</span>
     </ul>
    <li>
     <a data-link-type="biblio">[SERVICE-WORKERS]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-dom-clients-claim">claim()</span>
-     <li><span class="dfn-paneled" id="term-for-dom-clients-matchall">matchAll()</span>
+     <li><span class="dfn-paneled" id="7808c50882de287be786a89ce9b734f8">claim()</span>
+     <li><span class="dfn-paneled" id="61e5a5724014b37dec6c6bfee7ccaf27">matchAll()</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -894,63 +914,117 @@ See these guides on how to handle this:</p>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-gamepad">[GAMEPAD]
-   <dd>Steve Agoston; James Hollyer; Matthew Reynolds. <a href="https://w3c.github.io/gamepad/"><cite>Gamepad</cite></a>. URL: <a href="https://w3c.github.io/gamepad/">https://w3c.github.io/gamepad/</a>
+   <dd>Steve Agoston; Matthew Reynolds. <a href="https://w3c.github.io/gamepad/"><cite>Gamepad</cite></a>. URL: <a href="https://w3c.github.io/gamepad/">https://w3c.github.io/gamepad/</a>
    <dt id="biblio-geolocation">[GEOLOCATION]
    <dd>Marcos Caceres; Reilly Grant. <a href="https://w3c.github.io/geolocation-api/"><cite>Geolocation API</cite></a>. URL: <a href="https://w3c.github.io/geolocation-api/">https://w3c.github.io/geolocation-api/</a>
   </dl>
 <script>/* script-dfn-panel */
-
-document.body.addEventListener("click", function(e) {
-    var queryAll = function(sel) { return [].slice.call(document.querySelectorAll(sel)); }
-    // Find the dfn element or panel, if any, that was clicked on.
-    var el = e.target;
-    var target;
-    var hitALink = false;
-    while(el.parentElement) {
-        if(el.tagName == "A") {
-            // Clicking on a link in a <dfn> shouldn't summon the panel
-            hitALink = true;
-        }
-        if(el.classList.contains("dfn-paneled")) {
-            target = "dfn";
-            break;
-        }
-        if(el.classList.contains("dfn-panel")) {
-            target = "dfn-panel";
-            break;
-        }
-        el = el.parentElement;
+"use strict";
+{
+    function queryAll(sel) {
+        return [].slice.call(document.querySelectorAll(sel));
     }
-    if(target != "dfn-panel") {
+
+    // Add popup behavior to all dfns to show the corresponding dfn-panel.
+    var dfns = document.querySelectorAll('.dfn-paneled');
+    for (let dfn of dfns) { insertDfnPopupAction(dfn); }
+
+    document.body.addEventListener("click", (e) => {
+        // If not handled already, just hide all dfn panels.
+        hideAllDfnPanels();
+    });
+
+    function hideAllDfnPanels() {
         // Turn off any currently "on" or "activated" panels.
-        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(function(el){
-            el.classList.remove("on");
-            el.classList.remove("activated");
-        });
-    }
-    if(target == "dfn" && !hitALink) {
-        // open the panel
-        var dfnPanel = document.querySelector(".dfn-panel[data-for='" + el.id + "']");
-        if(dfnPanel) {
-            dfnPanel.classList.add("on");
-            var rect = el.getBoundingClientRect();
-            dfnPanel.style.left = window.scrollX + rect.right + 5 + "px";
-            dfnPanel.style.top = window.scrollY + rect.top + "px";
-            var panelRect = dfnPanel.getBoundingClientRect();
-            var panelWidth = panelRect.right - panelRect.left;
-            if(panelRect.right > document.body.scrollWidth && (rect.left - (panelWidth + 5)) > 0) {
-                // Reposition, because the panel is overflowing
-                dfnPanel.style.left = window.scrollX + rect.left - (panelWidth + 5) + "px";
-            }
-        } else {
-            console.log("Couldn't find .dfn-panel[data-for='" + el.id + "']");
-        }
-    } else if(target == "dfn-panel") {
-        // Switch it to "activated" state, which pins it.
-        el.classList.add("activated");
-        el.style.left = null;
-        el.style.top = null;
+        queryAll(".dfn-panel.on, .dfn-panel.activated").forEach(el=>hideDfnPanel(el));
     }
 
-});
+    function showDfnPanel(dfnPanel, dfn) {
+        hideAllDfnPanels(); // Only display one at this time.
+        dfn.setAttribute("aria-expanded", "true");
+        dfnPanel.classList.add("on");
+        dfnPanel.style.left = "5px";
+        dfnPanel.style.top = "0px";
+        const panelRect = dfnPanel.getBoundingClientRect();
+        const panelWidth = panelRect.right - panelRect.left;
+        if (panelRect.right > document.body.scrollWidth) {
+            // Panel's overflowing the screen.
+            // Just drop it below the dfn and flip it rightward instead.
+            // This still wont' fix things if the screen is *really* wide,
+            // but fixing that's a lot harder without 'anchor()'.
+            dfnPanel.style.top = "1.5em";
+            dfnPanel.style.left = "auto";
+            dfnPanel.style.right = "0px";
+        }
+    }
+
+    function pinDfnPanel(dfnPanel) {
+        // Switch it to "activated" state, which pins it.
+        dfnPanel.classList.add("activated");
+        dfnPanel.style.left = null;
+        dfnPanel.style.top = null;
+    }
+
+    function hideDfnPanel(dfnPanel, dfn) {
+        if(!dfn) {
+            dfn = document.getElementById(dfnPanel.getAttribute("data-for"));
+        }
+        dfn.setAttribute("aria-expanded", "false")
+        dfnPanel.classList.remove("on");
+        dfnPanel.classList.remove("activated");
+    }
+
+    function toggleDfnPanel(dfnPanel, dfn) {
+        if(dfnPanel.classList.contains("on")) {
+            hideDfnPanel(dfnPanel, dfn);
+        } else {
+            showDfnPanel(dfnPanel, dfn);
+        }
+    }
+
+    function insertDfnPopupAction(dfn) {
+        // Find dfn panel
+        const dfnPanel = document.querySelector(`.dfn-panel[data-for='${dfn.id}']`);
+        if (dfnPanel) {
+            const panelWrapper = document.createElement('span');
+            panelWrapper.appendChild(dfnPanel);
+            panelWrapper.style.position = "relative";
+            panelWrapper.style.height = "0px";
+            dfn.insertAdjacentElement("afterend", panelWrapper);
+            dfn.setAttribute('role', 'button');
+            dfn.setAttribute('aria-expanded', 'false')
+            dfn.tabIndex = 0;
+            dfn.classList.add('has-dfn-panel');
+            dfn.addEventListener('click', (event) => {
+                showDfnPanel(dfnPanel, dfn);
+                event.stopPropagation();
+            });
+            dfn.addEventListener('keypress', (event) => {
+                const kc = event.keyCode;
+                // 32->Space, 13->Enter
+                if(kc == 32 || kc == 13) {
+                    toggleDfnPanel(dfnPanel, dfn);
+                    event.stopPropagation();
+                    event.preventDefault();
+                }
+            });
+
+            dfnPanel.addEventListener('click', (event) => {
+                pinDfnPanel(dfnPanel);
+                event.stopPropagation();
+            });
+
+            dfnPanel.addEventListener('keydown', (event) => {
+                if(event.keyCode == 27) { // Escape key
+                    hideDfnPanel(dfnPanel, dfn);
+                    event.stopPropagation();
+                    event.preventDefault();
+                }
+            })
+
+        } else {
+            console.log("Couldn't find .dfn-panel[data-for='" + dfn.id + "']");
+        }
+    }
+}
 </script>

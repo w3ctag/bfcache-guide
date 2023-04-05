@@ -96,6 +96,11 @@ and that connections that allow for new incoming requests are terminated.
 When a document goes from non-[=Document/fully active=] to [=Document/fully active=] again,
 it can restore connections if appropriate.
 
+To listen to changes from [=Document/fully active=] to non-[=Document/fully active=],
+add a step in [=unloading document cleanup steps=].
+Meanwhile, to listen to changes from non-[=Document/fully active=] to [=Document/fully active=],
+add a step to [=Document/reactivate=] a document.
+
 While web authors can manually do cleanup (e.g. release the resources, sever connections)
 from within the {{pagehide}} event and restore them from the {{pageshow}} event themselves,
 doing this automatically from the API design allows the document to be kept alive after navigation by default,
