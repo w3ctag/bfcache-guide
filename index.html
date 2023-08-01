@@ -5,10 +5,9 @@
   <title>Supporting BFCached Documents</title>
   <meta content="UD" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-UD" rel="stylesheet">
-  <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version d9bd89757, updated Thu Mar 23 10:06:53 2023 -0700" name="generator">
+  <meta content="Bikeshed version d29f71adb, updated Wed Jul 19 11:08:56 2023 -0700" name="generator">
   <link href="https://w3ctag.github.io/bfcache-guide/" rel="canonical">
-<style>/* style-autolinks */
+<style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
     font-size: inherit;
@@ -69,8 +68,16 @@ pre .property::before, pre .property::after {
 [data-link-type=biblio] {
     white-space: pre;
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --selflink-text: black;
+        --selflink-bg: silver;
+        --selflink-hover-text: white;
+    }
+}
 </style>
-<style>/* style-colors */
+<style>/* Boilerplate: style-colors */
 
 /* Any --*-text not paired with a --*-bg is assumed to have a transparent bg */
 :root {
@@ -179,157 +186,6 @@ pre .property::before, pre .property::after {
 
     --editedrec-bg: darkorange;
 }
-</style>
-<style>/* style-counters */
-body {
-    counter-reset: example figure issue;
-}
-.issue {
-    counter-increment: issue;
-}
-.issue:not(.no-marker)::before {
-    content: "Issue " counter(issue);
-}
-
-.example {
-    counter-increment: example;
-}
-.example:not(.no-marker)::before {
-    content: "Example " counter(example);
-}
-.invalid.example:not(.no-marker)::before,
-.illegal.example:not(.no-marker)::before {
-    content: "Invalid Example" counter(example);
-}
-
-figcaption {
-    counter-increment: figure;
-}
-figcaption:not(.no-marker)::before {
-    content: "Figure " counter(figure) " ";
-}
-</style>
-<style>/* style-dfn-panel */
-:root {
-    --dfnpanel-bg: #ddd;
-    --dfnpanel-text: var(--text);
-}
-.dfn-panel {
-    position: absolute;
-    z-index: 35;
-    width: 20em;
-    min-width: min-content;
-    max-width: 300px;
-    height: auto;
-    max-height: 500px;
-    overflow: auto;
-    padding: 0.5em 0.75em;
-    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
-    background: var(--dfnpanel-bg);
-    color: var(--dfnpanel-text);
-    border: outset 0.2em;
-    white-space: normal; /* in case it's moved into a pre */
-}
-.dfn-panel:not(.on) { display: none; }
-.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
-.dfn-panel > b { display: block; }
-.dfn-panel a { color: var(--dfnpanel-text); }
-.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
-.dfn-panel > b + b { margin-top: 0.25em; }
-.dfn-panel ul { padding: 0; }
-.dfn-panel li { list-style: inside; }
-.dfn-panel.activated {
-    display: inline-block;
-    position: fixed;
-    left: .5em;
-    bottom: 2em;
-    margin: 0 auto;
-    max-width: calc(100vw - 1.5em - .4em - .5em);
-    max-height: 30vh;
-}
-
-.dfn-paneled { cursor: pointer; }
-</style>
-<style>/* style-issues */
-a[href].issue-return {
-    float: right;
-    float: inline-end;
-    color: var(--issueheading-text);
-    font-weight: bold;
-    text-decoration: none;
-}
-</style>
-<style>/* style-md-lists */
-/* This is a weird hack for me not yet following the commonmark spec
-   regarding paragraph and lists. */
-[data-md] > :first-child {
-    margin-top: 0;
-}
-[data-md] > :last-child {
-    margin-bottom: 0;
-}
-</style>
-<style>/* style-selflinks */
-
-:root {
-    --selflink-text: white;
-    --selflink-bg: gray;
-    --selflink-hover-text: black;
-}
-.heading, .issue, .note, .example, li, dt {
-    position: relative;
-}
-a.self-link {
-    position: absolute;
-    top: 0;
-    left: calc(-1 * (3.5rem - 26px));
-    width: calc(3.5rem - 26px);
-    height: 2em;
-    text-align: center;
-    border: none;
-    transition: opacity .2s;
-    opacity: .5;
-}
-a.self-link:hover {
-    opacity: 1;
-}
-.heading > a.self-link {
-    font-size: 83%;
-}
-.example > a.self-link,
-.note > a.self-link,
-.issue > a.self-link {
-    /* These blocks are overflow:auto, so positioning outside
-       doesn't work. */
-    left: auto;
-    right: 0;
-}
-li > a.self-link {
-    left: calc(-1 * (3.5rem - 26px) - 2em);
-}
-dfn > a.self-link {
-    top: auto;
-    left: auto;
-    opacity: 0;
-    width: 1.5em;
-    height: 1.5em;
-    background: var(--selflink-bg);
-    color: var(--selflink-text);
-    font-style: normal;
-    transition: opacity .2s, background-color .2s, color .2s;
-}
-dfn:hover > a.self-link {
-    opacity: 1;
-}
-dfn > a.self-link:hover {
-    color: var(--selflink-hover-text);
-}
-
-a.self-link::before            { content: "¶"; }
-.heading > a.self-link::before { content: "§"; }
-dfn > a.self-link::before      { content: "#"; }
-</style>
-<style>/* style-darkmode */
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -442,27 +298,173 @@ dfn > a.self-link::before      { content: "#"; }
        which is quite common in practice... */
     img { background: white; }
 }
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --selflink-text: black;
-        --selflink-bg: silver;
-        --selflink-hover-text: white;
-    }
+</style>
+<style>/* Boilerplate: style-counters */
+body {
+    counter-reset: example figure issue;
+}
+.issue {
+    counter-increment: issue;
+}
+.issue:not(.no-marker)::before {
+    content: "Issue " counter(issue);
 }
 
+.example {
+    counter-increment: example;
+}
+.example:not(.no-marker)::before {
+    content: "Example " counter(example);
+}
+.invalid.example:not(.no-marker)::before,
+.illegal.example:not(.no-marker)::before {
+    content: "Invalid Example" counter(example);
+}
+
+figcaption {
+    counter-increment: figure;
+}
+figcaption:not(.no-marker)::before {
+    content: "Figure " counter(figure) " ";
+}
+</style>
+<style>/* Boilerplate: style-dfn-panel */
+:root {
+    --dfnpanel-bg: #ddd;
+    --dfnpanel-text: var(--text);
+}
 @media (prefers-color-scheme: dark) {
     :root {
         --dfnpanel-bg: #222;
         --dfnpanel-text: var(--text);
     }
 }
+.dfn-panel {
+    position: absolute;
+    z-index: 35;
+    width: 20em;
+    width: 300px;
+    height: auto;
+    max-height: 500px;
+    overflow: auto;
+    padding: 0.5em 0.75em;
+    font: small Helvetica Neue, sans-serif, Droid Sans Fallback;
+    background: var(--dfnpanel-bg);
+    color: var(--dfnpanel-text);
+    border: outset 0.2em;
+    white-space: normal; /* in case it's moved into a pre */
+}
+.dfn-panel:not(.on) { display: none; }
+.dfn-panel * { margin: 0; padding: 0; text-indent: 0; }
+.dfn-panel > b { display: block; }
+.dfn-panel a { color: var(--dfnpanel-text); }
+.dfn-panel a:not(:hover) { text-decoration: none !important; border-bottom: none !important; }
+.dfn-panel > b + b { margin-top: 0.25em; }
+.dfn-panel ul { padding: 0 0 0 1em; list-style: none; }
+.dfn-panel li a {
+    white-space: pre;
+    display: inline-block;
+    max-width: calc(300px - 1.5em - 1em);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dfn-panel.activated {
+    display: inline-block;
+    position: fixed;
+    left: .5em;
+    bottom: 2em;
+    margin: 0 auto;
+    max-width: calc(100vw - 1.5em - .4em - .5em);
+    max-height: 30vh;
+}
+
+.dfn-paneled[role="button"] { cursor: pointer; }
+</style>
+<style>/* Boilerplate: style-issues */
+a[href].issue-return {
+    float: right;
+    float: inline-end;
+    color: var(--issueheading-text);
+    font-weight: bold;
+    text-decoration: none;
+}
+</style>
+<style>/* Boilerplate: style-md-lists */
+/* This is a weird hack for me not yet following the commonmark spec
+   regarding paragraph and lists. */
+[data-md] > :first-child {
+    margin-top: 0;
+}
+[data-md] > :last-child {
+    margin-bottom: 0;
+}
+</style>
+<style>/* Boilerplate: style-selflinks */
+
+:root {
+    --selflink-text: white;
+    --selflink-bg: gray;
+    --selflink-hover-text: black;
+}
+.heading, .issue, .note, .example, li, dt {
+    position: relative;
+}
+a.self-link {
+    position: absolute;
+    top: 0;
+    left: calc(-1 * (3.5rem - 26px));
+    width: calc(3.5rem - 26px);
+    height: 2em;
+    text-align: center;
+    border: none;
+    transition: opacity .2s;
+    opacity: .5;
+}
+a.self-link:hover {
+    opacity: 1;
+}
+.heading > a.self-link {
+    font-size: 83%;
+}
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
+li > a.self-link {
+    left: calc(-1 * (3.5rem - 26px) - 2em);
+}
+dfn > a.self-link {
+    top: auto;
+    left: auto;
+    opacity: 0;
+    width: 1.5em;
+    height: 1.5em;
+    background: var(--selflink-bg);
+    color: var(--selflink-text);
+    font-style: normal;
+    transition: opacity .2s, background-color .2s, color .2s;
+}
+dfn:hover > a.self-link {
+    opacity: 1;
+}
+dfn > a.self-link:hover {
+    color: var(--selflink-hover-text);
+}
+
+a.self-link::before            { content: "¶"; }
+.heading > a.self-link::before { content: "§"; }
+dfn > a.self-link::before      { content: "#"; }
 </style>
  <body class="h-entry">
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Supporting BFCached Documents</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2023-04-02">2 April 2023</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2023-07-31">31 July 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -477,7 +479,7 @@ dfn > a.self-link::before      { content: "#"; }
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/copyright-software" rel="license" title="W3C Software and Document License">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -521,6 +523,7 @@ dfn > a.self-link::before      { content: "#"; }
         <li><a href="#omit-non-fully-active"><span class="secno">2.1.3</span> <span class="content">Omit non-<span>fully active</span> documents from APIs that span multiple documents</span></a>
         <li><a href="#discard"><span class="secno">2.1.4</span> <span class="content">Discard non-<span>fully active</span> documents for situations that can’t be supported</span></a>
         <li><a href="#per-document-state"><span class="secno">2.1.5</span> <span class="content">Be aware that per-document state/data might persist after navigation</span></a>
+        <li><a href="#non-synchronous-steps"><span class="secno">2.1.6</span> <span class="content">Be aware that navigations can happen between steps running <span>in parallel</span></span></a>
        </ol>
       <li><a href="#antipatterns"><span class="secno">2.2</span> <span class="content">Antipatterns</span></a>
      </ol>
@@ -528,7 +531,6 @@ dfn > a.self-link::before      { content: "#"; }
      <a href="#w3c-conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
      <ol class="toc">
       <li><a href="#w3c-conventions"><span class="secno"></span> <span class="content">Document conventions</span></a>
-      <li><a href="#w3c-conformant-algorithms"><span class="secno"></span> <span class="content">Conformant Algorithms</span></a>
      </ol>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -700,6 +702,20 @@ and doing cleanup as necessary (see the <a href="#listen-fully-active">§ 2.1.
   even after the user navigated away and back to it again.
   The <a href="https://github.com/whatwg/html/issues/6588#issuecomment-1157244943">discussion</a> around this concluded that this is OK after comparing with other behaviors (e.g. focus),
   but every feature specification should think about this and decide what works best for the feature. </div>
+   <h4 class="heading settled" data-level="2.1.6" id="non-synchronous-steps"><span class="secno">2.1.6. </span><span class="content">Be aware that navigations can happen between steps running <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a></span><a class="self-link" href="#non-synchronous-steps"></a></h4>
+    If steps that run <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a> queue a task that is associated with a document,
+you need to be aware that the document might have been navigated away from and (later on) navigated to again.
+This can happen while running the steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel②">in parallel</a> and can have happened when the steps in the queued task eventually run.
+Since a navigation has happened and a considerable amount of time might have passed between the steps,
+the user might not expect some states that are saved in the steps to be preserved. 
+   <p class="note" role="note"><span class="marker">Note:</span> In theory, steps that run <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel③">in parallel</a> ought to be already resilient to changes that might occur between its steps.
+However, existing specs might not expect that navigations can occur and the document to be perceived as "gone" by the user in between the steps.</p>
+   <p>When writing steps that run <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel④">in parallel</a>,
+consider also listening to changes to the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active" id="ref-for-fully-active④⑥">fully active</a> state
+and doing cleanup as necessary or even refrain from running some steps
+(see the <a href="#listen-fully-active">§ 2.1.2 Listen for changes to fully active status</a> pattern above).</p>
+   <div class="example" id="example-13d9fd30"><a class="self-link" href="#example-13d9fd30"></a> APIs that request permission to the user, or requests user interaction through prompt, etc.,
+  should consider re-requesting the user if it detects that the document had become non-fully active. </div>
    <h3 class="heading settled" data-level="2.2" id="antipatterns"><span class="secno">2.2. </span><span class="content">Antipatterns</span><a class="self-link" href="#antipatterns"></a></h3>
    <p>This is basically the reverse of what is mentioned in the design guidance.
 When writing specifications, <b>do not do these</b>:</p>
@@ -739,6 +755,8 @@ See these guides on how to handle this:</p>
        <p><a href="#listen-fully-active">§ 2.1.2 Listen for changes to fully active status</a></p>
       <li data-md>
        <p><a href="#per-document-state">§ 2.1.5 Be aware that per-document state/data might persist after navigation</a></p>
+      <li data-md>
+       <p><a href="#non-synchronous-steps">§ 2.1.6 Be aware that navigations can happen between steps running in parallel</a></p>
      </ul>
    </ul>
   </main>
@@ -768,137 +786,40 @@ See these guides on how to handle this:</p>
     with <code>class="note"</code>,
     like this: </p>
    <p class="note" role="note">Note, this is an informative note.</p>
-   <h3 class="no-ref no-num heading settled" id="w3c-conformant-algorithms"><span class="content">Conformant Algorithms</span><a class="self-link" href="#w3c-conformant-algorithms"></a></h3>
-   <p>Requirements phrased in the imperative as part of algorithms
-    (such as "strip any leading space characters"
-    or "return false and abort these steps")
-    are to be interpreted with the meaning of the key word
-    ("must", "should", "may", etc)
-    used in introducing the algorithm. </p>
-   <p>Conformance requirements phrased as algorithms or specific steps
-    can be implemented in any manner,
-    so long as the end result is equivalent.
-    In particular, the algorithms defined in this specification
-    are intended to be easy to understand
-    and are not intended to be performant.
-    Implementers are encouraged to optimize. </p>
   </div>
 <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
-  <aside aria-labelledby="infopaneltitle-for-6d0578ffdf5f512c436348fdc7085334" class="dfn-panel" data-for="6d0578ffdf5f512c436348fdc7085334" id="infopanel-for-6d0578ffdf5f512c436348fdc7085334">
-   <span id="infopaneltitle-for-6d0578ffdf5f512c436348fdc7085334" style="display:none">Info about the 'gamepadconnected' external reference.</span><a href="https://w3c.github.io/gamepad/#dfn-gamepadconnected">https://w3c.github.io/gamepad/#dfn-gamepadconnected</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dfn-gamepadconnected">2.1.2. Listen for changes to fully active status</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-5f721c0a6f3beaadea199c80f8358c22" class="dfn-panel" data-for="5f721c0a6f3beaadea199c80f8358c22" id="infopanel-for-5f721c0a6f3beaadea199c80f8358c22">
-   <span id="infopaneltitle-for-5f721c0a6f3beaadea199c80f8358c22" style="display:none">Info about the 'watchPosition()' external reference.</span><a href="https://w3c.github.io/geolocation-api/#dom-geolocation-watchposition">https://w3c.github.io/geolocation-api/#dom-geolocation-watchposition</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-geolocation-watchposition">2.1.1. Gate actions with fully active checks</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-9110f806bb5fdbbb16bc9c04252670d5" class="dfn-panel" data-for="9110f806bb5fdbbb16bc9c04252670d5" id="infopanel-for-9110f806bb5fdbbb16bc9c04252670d5">
-   <span id="infopaneltitle-for-9110f806bb5fdbbb16bc9c04252670d5" style="display:none">Info about the 'BroadcastChannel' external reference.</span><a href="https://html.spec.whatwg.org/multipage/web-messaging.html#broadcastchannel">https://html.spec.whatwg.org/multipage/web-messaging.html#broadcastchannel</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-broadcastchannel">2.1.3. Omit non-fully active documents from APIs that span multiple documents</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-7594a09aa0c77c9e24726559a3a6da9d" class="dfn-panel" data-for="7594a09aa0c77c9e24726559a3a6da9d" id="infopanel-for-7594a09aa0c77c9e24726559a3a6da9d">
-   <span id="infopaneltitle-for-7594a09aa0c77c9e24726559a3a6da9d" style="display:none">Info about the 'fully active' external reference.</span><a href="https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active">https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-fully-active">1. Introduction</a> <a href="#ref-for-fully-active①">(2)</a> <a href="#ref-for-fully-active②">(3)</a>
-    <li><a href="#ref-for-fully-active③">2. When should features care about BFCache?</a> <a href="#ref-for-fully-active④">(2)</a>
-    <li><a href="#ref-for-fully-active⑤">2.1.1. Gate actions with fully active checks</a> <a href="#ref-for-fully-active⑥">(2)</a> <a href="#ref-for-fully-active⑦">(3)</a> <a href="#ref-for-fully-active⑧">(4)</a> <a href="#ref-for-fully-active⑨">(5)</a> <a href="#ref-for-fully-active①⓪">(6)</a> <a href="#ref-for-fully-active①①">(7)</a> <a href="#ref-for-fully-active①②">(8)</a>
-    <li><a href="#ref-for-fully-active①③">2.1.2. Listen for changes to fully active status</a> <a href="#ref-for-fully-active①④">(2)</a> <a href="#ref-for-fully-active①⑤">(3)</a> <a href="#ref-for-fully-active①⑥">(4)</a> <a href="#ref-for-fully-active①⑦">(5)</a> <a href="#ref-for-fully-active①⑧">(6)</a> <a href="#ref-for-fully-active①⑨">(7)</a> <a href="#ref-for-fully-active②⓪">(8)</a> <a href="#ref-for-fully-active②①">(9)</a> <a href="#ref-for-fully-active②②">(10)</a> <a href="#ref-for-fully-active②③">(11)</a> <a href="#ref-for-fully-active②④">(12)</a> <a href="#ref-for-fully-active②⑤">(13)</a> <a href="#ref-for-fully-active②⑥">(14)</a> <a href="#ref-for-fully-active②⑦">(15)</a> <a href="#ref-for-fully-active②⑧">(16)</a> <a href="#ref-for-fully-active②⑨">(17)</a> <a href="#ref-for-fully-active③⓪">(18)</a> <a href="#ref-for-fully-active③①">(19)</a> <a href="#ref-for-fully-active③②">(20)</a> <a href="#ref-for-fully-active③③">(21)</a> <a href="#ref-for-fully-active③④">(22)</a>
-    <li><a href="#ref-for-fully-active③⑤">2.1.3. Omit non-fully active documents from APIs that span multiple documents</a> <a href="#ref-for-fully-active③⑥">(2)</a> <a href="#ref-for-fully-active③⑦">(3)</a> <a href="#ref-for-fully-active③⑧">(4)</a> <a href="#ref-for-fully-active③⑨">(5)</a> <a href="#ref-for-fully-active④⓪">(6)</a>
-    <li><a href="#ref-for-fully-active④①">2.1.4. Discard non-fully active documents for situations that can’t be supported</a> <a href="#ref-for-fully-active④②">(2)</a> <a href="#ref-for-fully-active④③">(3)</a> <a href="#ref-for-fully-active④④">(4)</a>
-    <li><a href="#ref-for-fully-active④⑤">2.1.5. Be aware that per-document state/data might persist after navigation</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-9d8ff05d06644943ae33e1c8cddde31d" class="dfn-panel" data-for="9d8ff05d06644943ae33e1c8cddde31d" id="infopanel-for-9d8ff05d06644943ae33e1c8cddde31d">
-   <span id="infopaneltitle-for-9d8ff05d06644943ae33e1c8cddde31d" style="display:none">Info about the 'opener' external reference.</span><a href="https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-opener">https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-opener</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-opener">2.1.3. Omit non-fully active documents from APIs that span multiple documents</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-ff9f6ed4f290e15aa3c0172b660aeeac" class="dfn-panel" data-for="ff9f6ed4f290e15aa3c0172b660aeeac" id="infopanel-for-ff9f6ed4f290e15aa3c0172b660aeeac">
-   <span id="infopaneltitle-for-ff9f6ed4f290e15aa3c0172b660aeeac" style="display:none">Info about the 'pagehide' external reference.</span><a href="https://html.spec.whatwg.org/multipage/indices.html#event-pagehide">https://html.spec.whatwg.org/multipage/indices.html#event-pagehide</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-event-pagehide">2.1.2. Listen for changes to fully active status</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-54f0bfa77c123404411d9b8b462c6b35" class="dfn-panel" data-for="54f0bfa77c123404411d9b8b462c6b35" id="infopanel-for-54f0bfa77c123404411d9b8b462c6b35">
-   <span id="infopaneltitle-for-54f0bfa77c123404411d9b8b462c6b35" style="display:none">Info about the 'pageshow' external reference.</span><a href="https://html.spec.whatwg.org/multipage/indices.html#event-pageshow">https://html.spec.whatwg.org/multipage/indices.html#event-pageshow</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-event-pageshow">2.1.2. Listen for changes to fully active status</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-845bffcb8707bbb2a1459536eecf13cc" class="dfn-panel" data-for="845bffcb8707bbb2a1459536eecf13cc" id="infopanel-for-845bffcb8707bbb2a1459536eecf13cc">
-   <span id="infopaneltitle-for-845bffcb8707bbb2a1459536eecf13cc" style="display:none">Info about the 'reactivate' external reference.</span><a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#reactivate-a-document">https://html.spec.whatwg.org/multipage/browsing-the-web.html#reactivate-a-document</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-reactivate-a-document">2.1.2. Listen for changes to fully active status</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-83418513ea93980e95697432d0d33474" class="dfn-panel" data-for="83418513ea93980e95697432d0d33474" id="infopanel-for-83418513ea93980e95697432d0d33474">
-   <span id="infopaneltitle-for-83418513ea93980e95697432d0d33474" style="display:none">Info about the 'sticky activation' external reference.</span><a href="https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation">https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-sticky-activation">2.1.5. Be aware that per-document state/data might persist after navigation</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-877bb12103715513886b6cf42f954d68" class="dfn-panel" data-for="877bb12103715513886b6cf42f954d68" id="infopanel-for-877bb12103715513886b6cf42f954d68">
-   <span id="infopaneltitle-for-877bb12103715513886b6cf42f954d68" style="display:none">Info about the 'system focus' external reference.</span><a href="https://html.spec.whatwg.org/multipage/interaction.html#system-focus">https://html.spec.whatwg.org/multipage/interaction.html#system-focus</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-system-focus">2.1.1. Gate actions with fully active checks</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-5002247a1e0aa38a7705419d947c6884" class="dfn-panel" data-for="5002247a1e0aa38a7705419d947c6884" id="infopanel-for-5002247a1e0aa38a7705419d947c6884">
-   <span id="infopaneltitle-for-5002247a1e0aa38a7705419d947c6884" style="display:none">Info about the 'unloading document cleanup steps' external reference.</span><a href="https://html.spec.whatwg.org/multipage/document-lifecycle.html#unloading-document-cleanup-steps">https://html.spec.whatwg.org/multipage/document-lifecycle.html#unloading-document-cleanup-steps</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-unloading-document-cleanup-steps">2.1.2. Listen for changes to fully active status</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-7808c50882de287be786a89ce9b734f8" class="dfn-panel" data-for="7808c50882de287be786a89ce9b734f8" id="infopanel-for-7808c50882de287be786a89ce9b734f8">
-   <span id="infopaneltitle-for-7808c50882de287be786a89ce9b734f8" style="display:none">Info about the 'claim()' external reference.</span><a href="https://w3c.github.io/ServiceWorker/#dom-clients-claim">https://w3c.github.io/ServiceWorker/#dom-clients-claim</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-clients-claim">2.1.4. Discard non-fully active documents for situations that can’t be supported</a>
-   </ul>
-  </aside>
-  <aside aria-labelledby="infopaneltitle-for-61e5a5724014b37dec6c6bfee7ccaf27" class="dfn-panel" data-for="61e5a5724014b37dec6c6bfee7ccaf27" id="infopanel-for-61e5a5724014b37dec6c6bfee7ccaf27">
-   <span id="infopaneltitle-for-61e5a5724014b37dec6c6bfee7ccaf27" style="display:none">Info about the 'matchAll()' external reference.</span><a href="https://w3c.github.io/ServiceWorker/#dom-clients-matchall">https://w3c.github.io/ServiceWorker/#dom-clients-matchall</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-clients-matchall">2.1.3. Omit non-fully active documents from APIs that span multiple documents</a> <a href="#ref-for-dom-clients-matchall①">(2)</a>
-   </ul>
-  </aside>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
    <li>
     <a data-link-type="biblio">[GAMEPAD]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="6d0578ffdf5f512c436348fdc7085334">gamepadconnected</span>
+     <li><span class="dfn-paneled" id="767d1b0b">gamepadconnected</span>
     </ul>
    <li>
     <a data-link-type="biblio">[GEOLOCATION]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="5f721c0a6f3beaadea199c80f8358c22">watchPosition()</span>
+     <li><span class="dfn-paneled" id="4de8fec9">watchPosition()</span>
     </ul>
    <li>
     <a data-link-type="biblio">[HTML]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="9110f806bb5fdbbb16bc9c04252670d5">BroadcastChannel</span>
-     <li><span class="dfn-paneled" id="7594a09aa0c77c9e24726559a3a6da9d">fully active</span>
-     <li><span class="dfn-paneled" id="9d8ff05d06644943ae33e1c8cddde31d">opener</span>
-     <li><span class="dfn-paneled" id="ff9f6ed4f290e15aa3c0172b660aeeac">pagehide</span>
-     <li><span class="dfn-paneled" id="54f0bfa77c123404411d9b8b462c6b35">pageshow</span>
-     <li><span class="dfn-paneled" id="845bffcb8707bbb2a1459536eecf13cc">reactivate</span>
-     <li><span class="dfn-paneled" id="83418513ea93980e95697432d0d33474">sticky activation</span>
-     <li><span class="dfn-paneled" id="877bb12103715513886b6cf42f954d68">system focus</span>
-     <li><span class="dfn-paneled" id="5002247a1e0aa38a7705419d947c6884">unloading document cleanup steps</span>
+     <li><span class="dfn-paneled" id="a0c4f72a">BroadcastChannel</span>
+     <li><span class="dfn-paneled" id="0e3ba9f8">fully active</span>
+     <li><span class="dfn-paneled" id="a72449dd">in parallel</span>
+     <li><span class="dfn-paneled" id="cbe46402">opener</span>
+     <li><span class="dfn-paneled" id="324be8d3">pagehide</span>
+     <li><span class="dfn-paneled" id="e5ed7762">pageshow</span>
+     <li><span class="dfn-paneled" id="e93b877c">reactivate</span>
+     <li><span class="dfn-paneled" id="ca96a59c">sticky activation</span>
+     <li><span class="dfn-paneled" id="124a994b">system focus</span>
+     <li><span class="dfn-paneled" id="4411082c">unloading document cleanup steps</span>
     </ul>
    <li>
     <a data-link-type="biblio">[SERVICE-WORKERS]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="7808c50882de287be786a89ce9b734f8">claim()</span>
-     <li><span class="dfn-paneled" id="61e5a5724014b37dec6c6bfee7ccaf27">matchAll()</span>
+     <li><span class="dfn-paneled" id="723fc9da">claim()</span>
+     <li><span class="dfn-paneled" id="be123ea4">matchAll()</span>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -918,21 +839,68 @@ See these guides on how to handle this:</p>
    <dt id="biblio-geolocation">[GEOLOCATION]
    <dd>Marcos Caceres; Reilly Grant. <a href="https://w3c.github.io/geolocation-api/"><cite>Geolocation API</cite></a>. URL: <a href="https://w3c.github.io/geolocation-api/">https://w3c.github.io/geolocation-api/</a>
   </dl>
-<script>/* script-dfn-panel */
+<script>/* Boilerplate: script-dfn-panel */
 "use strict";
 {
-    function queryAll(sel) {
-        return [].slice.call(document.querySelectorAll(sel));
+    const dfnsJson = window.dfnsJson || {};
+
+    function genDfnPanel({dfnID, url, dfnText, refSections, external}) {
+        return mk.aside({
+            class: "dfn-panel",
+            id: `infopanel-for-${dfnID}`,
+            "data-for": dfnID,
+            "aria-labelled-by":`infopaneltitle-for-${dfnID}`,
+            },
+            mk.span({id:`infopaneltitle-for-${dfnID}`, style:"display:none"},
+                `Info about the '${dfnText}' ${external?"external":""} reference.`),
+            mk.a({href:url}, url),
+            mk.b({}, "Referenced in:"),
+            mk.ul({},
+                ...refSections.map(section=>
+                    mk.li({},
+                        ...section.refs.map((ref, refI)=>
+                            [
+                                mk.a({
+                                    href: `#${ref.id}`
+                                    },
+                                    (refI == 0) ? section.title : `(${refI + 1})`
+                                ),
+                                " ",
+                            ]
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
 
-    // Add popup behavior to all dfns to show the corresponding dfn-panel.
-    var dfns = document.querySelectorAll('.dfn-paneled');
-    for (let dfn of dfns) { insertDfnPopupAction(dfn); }
+    function genAllDfnPanels() {
+        for(const panelData of Object.values(window.dfnpanelData)) {
+            const dfnID = panelData.dfnID;
+            const dfn = document.getElementById(dfnID);
+            if(!dfn) {
+                console.log(`Can't find dfn#${dfnID}.`, panelData);
+            } else {
+                const panel = genDfnPanel(panelData);
+                append(document.body, panel);
+                insertDfnPopupAction(dfn, panel)
+            }
+        }
+    }
 
-    document.body.addEventListener("click", (e) => {
-        // If not handled already, just hide all dfn panels.
-        hideAllDfnPanels();
-    });
+    document.addEventListener("DOMContentLoaded", ()=>{
+        genAllDfnPanels();
+
+        // Add popup behavior to all dfns to show the corresponding dfn-panel.
+        var dfns = queryAll('.dfn-paneled');
+        for(let dfn of dfns) { ; }
+
+        document.body.addEventListener("click", (e) => {
+            // If not handled already, just hide all dfn panels.
+            hideAllDfnPanels();
+        });
+    })
+
 
     function hideAllDfnPanels() {
         // Turn off any currently "on" or "activated" panels.
@@ -982,49 +950,258 @@ See these guides on how to handle this:</p>
         }
     }
 
-    function insertDfnPopupAction(dfn) {
+    function insertDfnPopupAction(dfn, dfnPanel) {
         // Find dfn panel
-        const dfnPanel = document.querySelector(`.dfn-panel[data-for='${dfn.id}']`);
-        if (dfnPanel) {
-            const panelWrapper = document.createElement('span');
-            panelWrapper.appendChild(dfnPanel);
-            panelWrapper.style.position = "relative";
-            panelWrapper.style.height = "0px";
-            dfn.insertAdjacentElement("afterend", panelWrapper);
-            dfn.setAttribute('role', 'button');
-            dfn.setAttribute('aria-expanded', 'false')
-            dfn.tabIndex = 0;
-            dfn.classList.add('has-dfn-panel');
-            dfn.addEventListener('click', (event) => {
-                showDfnPanel(dfnPanel, dfn);
+        const panelWrapper = document.createElement('span');
+        panelWrapper.appendChild(dfnPanel);
+        panelWrapper.style.position = "relative";
+        panelWrapper.style.height = "0px";
+        dfn.insertAdjacentElement("afterend", panelWrapper);
+        dfn.setAttribute('role', 'button');
+        dfn.setAttribute('aria-expanded', 'false')
+        dfn.tabIndex = 0;
+        dfn.classList.add('has-dfn-panel');
+        dfn.addEventListener('click', (event) => {
+            showDfnPanel(dfnPanel, dfn);
+            event.stopPropagation();
+        });
+        dfn.addEventListener('keypress', (event) => {
+            const kc = event.keyCode;
+            // 32->Space, 13->Enter
+            if(kc == 32 || kc == 13) {
+                toggleDfnPanel(dfnPanel, dfn);
                 event.stopPropagation();
-            });
-            dfn.addEventListener('keypress', (event) => {
-                const kc = event.keyCode;
-                // 32->Space, 13->Enter
-                if(kc == 32 || kc == 13) {
-                    toggleDfnPanel(dfnPanel, dfn);
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
-            });
+                event.preventDefault();
+            }
+        });
 
-            dfnPanel.addEventListener('click', (event) => {
+        dfnPanel.addEventListener('click', (event) => {
+            if (event.target.nodeName == 'A') {
                 pinDfnPanel(dfnPanel);
+            }
+            event.stopPropagation();
+        });
+
+        dfnPanel.addEventListener('keydown', (event) => {
+            if(event.keyCode == 27) { // Escape key
+                hideDfnPanel(dfnPanel, dfn);
                 event.stopPropagation();
-            });
-
-            dfnPanel.addEventListener('keydown', (event) => {
-                if(event.keyCode == 27) { // Escape key
-                    hideDfnPanel(dfnPanel, dfn);
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
-            })
-
-        } else {
-            console.log("Couldn't find .dfn-panel[data-for='" + dfn.id + "']");
-        }
+                event.preventDefault();
+            }
+        })
     }
+}
+</script>
+<script>/* Boilerplate: script-dfn-panel-json */
+window.dfnpanelData = {};
+window.dfnpanelData['767d1b0b'] = {"dfnID": "767d1b0b", "url": "https://w3c.github.io/gamepad/#dfn-gamepadconnected", "dfnText": "gamepadconnected", "refSections": [{"refs": [{"id": "ref-for-dfn-gamepadconnected"}], "title": "2.1.2. Listen for changes to fully active status"}], "external": true};
+window.dfnpanelData['4de8fec9'] = {"dfnID": "4de8fec9", "url": "https://w3c.github.io/geolocation-api/#dom-geolocation-watchposition", "dfnText": "watchPosition()", "refSections": [{"refs": [{"id": "ref-for-dom-geolocation-watchposition"}], "title": "2.1.1. Gate actions with fully active checks"}], "external": true};
+window.dfnpanelData['a0c4f72a'] = {"dfnID": "a0c4f72a", "url": "https://html.spec.whatwg.org/multipage/web-messaging.html#broadcastchannel", "dfnText": "BroadcastChannel", "refSections": [{"refs": [{"id": "ref-for-broadcastchannel"}], "title": "2.1.3. Omit non-fully active documents from APIs that span multiple documents"}], "external": true};
+window.dfnpanelData['0e3ba9f8'] = {"dfnID": "0e3ba9f8", "url": "https://html.spec.whatwg.org/multipage/document-sequences.html#fully-active", "dfnText": "fully active", "refSections": [{"refs": [{"id": "ref-for-fully-active"}, {"id": "ref-for-fully-active\u2460"}, {"id": "ref-for-fully-active\u2461"}], "title": "1. Introduction"}, {"refs": [{"id": "ref-for-fully-active\u2462"}, {"id": "ref-for-fully-active\u2463"}], "title": "2. When should features care about BFCache?"}, {"refs": [{"id": "ref-for-fully-active\u2464"}, {"id": "ref-for-fully-active\u2465"}, {"id": "ref-for-fully-active\u2466"}, {"id": "ref-for-fully-active\u2467"}, {"id": "ref-for-fully-active\u2468"}, {"id": "ref-for-fully-active\u2460\u24ea"}, {"id": "ref-for-fully-active\u2460\u2460"}, {"id": "ref-for-fully-active\u2460\u2461"}], "title": "2.1.1. Gate actions with fully active checks"}, {"refs": [{"id": "ref-for-fully-active\u2460\u2462"}, {"id": "ref-for-fully-active\u2460\u2463"}, {"id": "ref-for-fully-active\u2460\u2464"}, {"id": "ref-for-fully-active\u2460\u2465"}, {"id": "ref-for-fully-active\u2460\u2466"}, {"id": "ref-for-fully-active\u2460\u2467"}, {"id": "ref-for-fully-active\u2460\u2468"}, {"id": "ref-for-fully-active\u2461\u24ea"}, {"id": "ref-for-fully-active\u2461\u2460"}, {"id": "ref-for-fully-active\u2461\u2461"}, {"id": "ref-for-fully-active\u2461\u2462"}, {"id": "ref-for-fully-active\u2461\u2463"}, {"id": "ref-for-fully-active\u2461\u2464"}, {"id": "ref-for-fully-active\u2461\u2465"}, {"id": "ref-for-fully-active\u2461\u2466"}, {"id": "ref-for-fully-active\u2461\u2467"}, {"id": "ref-for-fully-active\u2461\u2468"}, {"id": "ref-for-fully-active\u2462\u24ea"}, {"id": "ref-for-fully-active\u2462\u2460"}, {"id": "ref-for-fully-active\u2462\u2461"}, {"id": "ref-for-fully-active\u2462\u2462"}, {"id": "ref-for-fully-active\u2462\u2463"}], "title": "2.1.2. Listen for changes to fully active status"}, {"refs": [{"id": "ref-for-fully-active\u2462\u2464"}, {"id": "ref-for-fully-active\u2462\u2465"}, {"id": "ref-for-fully-active\u2462\u2466"}, {"id": "ref-for-fully-active\u2462\u2467"}, {"id": "ref-for-fully-active\u2462\u2468"}, {"id": "ref-for-fully-active\u2463\u24ea"}], "title": "2.1.3. Omit non-fully active documents from APIs that span multiple documents"}, {"refs": [{"id": "ref-for-fully-active\u2463\u2460"}, {"id": "ref-for-fully-active\u2463\u2461"}, {"id": "ref-for-fully-active\u2463\u2462"}, {"id": "ref-for-fully-active\u2463\u2463"}], "title": "2.1.4. Discard non-fully active documents for situations that can\u2019t be supported"}, {"refs": [{"id": "ref-for-fully-active\u2463\u2464"}], "title": "2.1.5. Be aware that per-document state/data might persist after navigation"}, {"refs": [{"id": "ref-for-fully-active\u2463\u2465"}], "title": "2.1.6. Be aware that navigations can happen between steps running in parallel"}], "external": true};
+window.dfnpanelData['a72449dd'] = {"dfnID": "a72449dd", "url": "https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel", "dfnText": "in parallel", "refSections": [{"refs": [{"id": "ref-for-in-parallel"}, {"id": "ref-for-in-parallel\u2460"}, {"id": "ref-for-in-parallel\u2461"}, {"id": "ref-for-in-parallel\u2462"}, {"id": "ref-for-in-parallel\u2463"}], "title": "2.1.6. Be aware that navigations can happen between steps running in parallel"}], "external": true};
+window.dfnpanelData['cbe46402'] = {"dfnID": "cbe46402", "url": "https://html.spec.whatwg.org/multipage/nav-history-apis.html#dom-opener", "dfnText": "opener", "refSections": [{"refs": [{"id": "ref-for-dom-opener"}], "title": "2.1.3. Omit non-fully active documents from APIs that span multiple documents"}], "external": true};
+window.dfnpanelData['324be8d3'] = {"dfnID": "324be8d3", "url": "https://html.spec.whatwg.org/multipage/indices.html#event-pagehide", "dfnText": "pagehide", "refSections": [{"refs": [{"id": "ref-for-event-pagehide"}], "title": "2.1.2. Listen for changes to fully active status"}], "external": true};
+window.dfnpanelData['e5ed7762'] = {"dfnID": "e5ed7762", "url": "https://html.spec.whatwg.org/multipage/indices.html#event-pageshow", "dfnText": "pageshow", "refSections": [{"refs": [{"id": "ref-for-event-pageshow"}], "title": "2.1.2. Listen for changes to fully active status"}], "external": true};
+window.dfnpanelData['e93b877c'] = {"dfnID": "e93b877c", "url": "https://html.spec.whatwg.org/multipage/browsing-the-web.html#reactivate-a-document", "dfnText": "reactivate", "refSections": [{"refs": [{"id": "ref-for-reactivate-a-document"}], "title": "2.1.2. Listen for changes to fully active status"}], "external": true};
+window.dfnpanelData['ca96a59c'] = {"dfnID": "ca96a59c", "url": "https://html.spec.whatwg.org/multipage/interaction.html#sticky-activation", "dfnText": "sticky activation", "refSections": [{"refs": [{"id": "ref-for-sticky-activation"}], "title": "2.1.5. Be aware that per-document state/data might persist after navigation"}], "external": true};
+window.dfnpanelData['124a994b'] = {"dfnID": "124a994b", "url": "https://html.spec.whatwg.org/multipage/interaction.html#system-focus", "dfnText": "system focus", "refSections": [{"refs": [{"id": "ref-for-system-focus"}], "title": "2.1.1. Gate actions with fully active checks"}], "external": true};
+window.dfnpanelData['4411082c'] = {"dfnID": "4411082c", "url": "https://html.spec.whatwg.org/multipage/document-lifecycle.html#unloading-document-cleanup-steps", "dfnText": "unloading document cleanup steps", "refSections": [{"refs": [{"id": "ref-for-unloading-document-cleanup-steps"}], "title": "2.1.2. Listen for changes to fully active status"}], "external": true};
+window.dfnpanelData['723fc9da'] = {"dfnID": "723fc9da", "url": "https://w3c.github.io/ServiceWorker/#dom-clients-claim", "dfnText": "claim()", "refSections": [{"refs": [{"id": "ref-for-dom-clients-claim"}], "title": "2.1.4. Discard non-fully active documents for situations that can\u2019t be supported"}], "external": true};
+window.dfnpanelData['be123ea4'] = {"dfnID": "be123ea4", "url": "https://w3c.github.io/ServiceWorker/#dom-clients-matchall", "dfnText": "matchAll()", "refSections": [{"refs": [{"id": "ref-for-dom-clients-matchall"}, {"id": "ref-for-dom-clients-matchall\u2460"}], "title": "2.1.3. Omit non-fully active documents from APIs that span multiple documents"}], "external": true};
+</script>
+<script>/* Boilerplate: script-dom-helper */
+function query(sel) { return document.querySelector(sel); }
+
+function queryAll(sel) { return [...document.querySelectorAll(sel)]; }
+
+function iter(obj) {
+	if(!obj) return [];
+	var it = obj[Symbol.iterator];
+	if(it) return it;
+	return Object.entries(obj);
+}
+
+function mk(tagname, attrs, ...children) {
+	const el = document.createElement(tagname);
+	for(const [k,v] of iter(attrs)) {
+		if(k.slice(0,3) == "_on") {
+			const eventName = k.slice(3);
+			el.addEventListener(eventName, v);
+		} else if(k[0] == "_") {
+			// property, not attribute
+			el[k.slice(1)] = v;
+		} else {
+			if(v === false || v == null) {
+        continue;
+      } else if(v === true) {
+        el.setAttribute(k, "");
+        continue;
+      } else {
+  			el.setAttribute(k, v);
+      }
+		}
+	}
+	append(el, children);
+	return el;
+}
+
+/* Create shortcuts for every known HTML element */
+[
+  "a",
+  "abbr",
+  "acronym",
+  "address",
+  "applet",
+  "area",
+  "article",
+  "aside",
+  "audio",
+  "b",
+  "base",
+  "basefont",
+  "bdo",
+  "big",
+  "blockquote",
+  "body",
+  "br",
+  "button",
+  "canvas",
+  "caption",
+  "center",
+  "cite",
+  "code",
+  "col",
+  "colgroup",
+  "datalist",
+  "dd",
+  "del",
+  "details",
+  "dfn",
+  "dialog",
+  "div",
+  "dl",
+  "dt",
+  "em",
+  "embed",
+  "fieldset",
+  "figcaption",
+  "figure",
+  "font",
+  "footer",
+  "form",
+  "frame",
+  "frameset",
+  "head",
+  "header",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "hr",
+  "html",
+  "i",
+  "iframe",
+  "img",
+  "input",
+  "ins",
+  "kbd",
+  "label",
+  "legend",
+  "li",
+  "link",
+  "main",
+  "map",
+  "mark",
+  "meta",
+  "meter",
+  "nav",
+  "nobr",
+  "noscript",
+  "object",
+  "ol",
+  "optgroup",
+  "option",
+  "output",
+  "p",
+  "param",
+  "pre",
+  "progress",
+  "q",
+  "s",
+  "samp",
+  "script",
+  "section",
+  "select",
+  "small",
+  "source",
+  "span",
+  "strike",
+  "strong",
+  "style",
+  "sub",
+  "summary",
+  "sup",
+  "table",
+  "tbody",
+  "td",
+  "template",
+  "textarea",
+  "tfoot",
+  "th",
+  "thead",
+  "time",
+  "title",
+  "tr",
+  "u",
+  "ul",
+  "var",
+  "video",
+  "wbr",
+  "xmp",
+].forEach(tagname=>{
+	mk[tagname] = (...args) => mk(tagname, ...args);
+});
+
+function* nodesFromChildList(children) {
+	for(const child of children.flat(Infinity)) {
+		if(child instanceof Node) {
+			yield child;
+		} else {
+			yield new Text(child);
+		}
+	}
+}
+function append(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		if(el instanceof Node) el.appendChild(child);
+		else el.push(child);
+	}
+	return el;
+}
+
+function insertAfter(el, ...children) {
+	for(const child of nodesFromChildList(children)) {
+		el.parentNode.insertBefore(child, el.nextSibling);
+	}
+	return el;
+}
+
+function clearContents(el) {
+	el.innerHTML = "";
+	return el;
+}
+
+function parseHTML(markup) {
+	if(markup.toLowerCase().trim().indexOf('<!doctype') === 0) {
+		const doc = document.implementation.createHTMLDocument("");
+		doc.documentElement.innerHTML = markup;
+		return doc;
+	} else {
+		const el = mk.template({});
+		el.innerHTML = markup;
+		return el.content;
+	}
 }
 </script>
